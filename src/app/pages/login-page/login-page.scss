@@ -3,4 +3,36 @@
   grid-template-columns: 1fr 1fr;
   height: 100dvh;
   align-items: center;
+  margin: 0 5%;
 }
+
+.login-form {
+
+  &__title {
+    margin-bottom: 60px;
+  }
+
+  &__label {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  &__input {
+    display: block;
+    border: 1px solid var(--light-color);
+    border-radius: 4px;
+    padding: 12px 20px;
+    background: var(--dark-color);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: var(--light-color);
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', sans-serif;
+    width: 100%;
+  }
+
+ }
