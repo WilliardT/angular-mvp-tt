@@ -1,6 +1,8 @@
 <form
   action=""
   class="login-form"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit($event)"
 >
   <h1 class="h1 login-form__title">Вход</h1>
 
@@ -11,6 +13,7 @@
       class="login-form__input"
       type="text"
       placeholder="Введите логин"
+      formControlName="username"
     >
   </label>
 
@@ -21,10 +24,14 @@
       class="login-form__input"
       type="text"
       placeholder="Введите пароль"
+      formControlName="password"
     >
   </label>
 
-  <button class="btn btn-shadow">
+  <button
+    class="btn btn-shadow"
+    type="submit"
+  >
     Войти
   </button>
 
