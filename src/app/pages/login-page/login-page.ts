@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { AuthService } from '../../auth/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -12,6 +13,7 @@ import { AuthService } from '../../auth/auth';
 })
 export class LoginPage {
   authService = inject(AuthService);
+  router = inject(Router);
 
   form = new FormGroup<{
     username: FormControl<string | null>;
@@ -34,6 +36,8 @@ export class LoginPage {
       this.authService.login(this.form.getRawValue())
         .subscribe({
           next: (response) => {
+            this.router.navigate(['/']);
+
             console.log('Login successful', response);
             // Handle successful login (e.g., save token, redirect)
           },
