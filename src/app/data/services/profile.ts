@@ -13,4 +13,8 @@ export class ProfileService {
   getTestAccount() {
     return this.http.get<IProfile[]>(`${API_BASE_URL}/account/test_accounts`);
   }
+
+  getMe() {
+    return this.http.get<IProfile>(`${API_BASE_URL}/account/me`);
+  }
 }
