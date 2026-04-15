@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { API_BASE_URL } from '../core/config/api.config';
 import { tap } from 'rxjs';
 import { TokenResponse } from './auth.interface';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +11,16 @@ import { TokenResponse } from './auth.interface';
 export class AuthService {
   private readonly http = inject(HttpClient);
 
+  cookieService = inject(CookieService);
+
   token: string | null = null;
   refreshToken: string | null = null;
 
   get isAuth() {
+    if (!this.token) {
+      this.token = this.cookieService.get('token');
+    }
+
     return !!this.token;
   }
 
@@ -36,6 +43,9 @@ export class AuthService {
         tap((val) => {
           this.token = val.accessToken;
           this.refreshToken = val.refreshToken;
+
+          this.cookieService.set('token', val.accessToken);
+          this.cookieService.set('refreshToken', val.refreshToken);
         })
       )
   }
