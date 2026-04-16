@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { API_BASE_URL } from '../core/config/api.config';
+import { MOCK_API_BASE_URL } from '../core/config/api.config';
 import { catchError, tap, throwError } from 'rxjs';
 import { TokenResponse } from './auth.interface';
 import { CookieService } from 'ngx-cookie-service';
@@ -32,14 +32,24 @@ export class AuthService {
       throw new Error('Username and password are required');
     }
 
-    const formData = new FormData();
+    // const formData = new FormData();
+    //
+    // formData.append('username', payload.username || '');
+    // formData.append('password', payload.password || '');
 
-    formData.append('username', payload.username || '');
-    formData.append('password', payload.password || '');
+    // return this.http.post<TokenResponse>(
+    //   `${API_BASE_URL}/auth/token`,
+    //   formData
+    // )
 
     return this.http.post<TokenResponse>(
-      `${API_BASE_URL}/auth/token`,
-      formData
+      `${MOCK_API_BASE_URL}/auth/login`,
+      {
+        username: payload.username,
+        password: payload.password,
+        expiresInMins: 30,
+      },
+      { withCredentials: true }
     )
       .pipe(
         tap((val: TokenResponse) => this.saveTokens(val)),
@@ -48,8 +58,12 @@ export class AuthService {
 
   refreshAuthToken() {
     return this.http.post<TokenResponse>(
-      `${API_BASE_URL}/auth/refresh`,
-      { refreshToken: this.refreshToken }
+      `${MOCK_API_BASE_URL}/auth/refresh`,
+      {
+        refreshToken: this.refreshToken,
+        expiresInMins: 30,
+      },
+      { withCredentials: true }
     )
       .pipe(
         tap((val) => this.saveTokens(val)),

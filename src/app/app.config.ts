@@ -11,12 +11,12 @@ import { authTokenInterceptor } from './auth/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
-    provideHttpClient(
-      withInterceptors([authTokenInterceptor])
-    ),
-        provideTaiga()
+      provideBrowserGlobalErrorListeners(),
+      provideZoneChangeDetection({ eventCoalescing: true }),
+      provideRouter(routes),
+      provideHttpClient(
+        withInterceptors([authTokenInterceptor])
+      ),
+      provideTaiga()
     ]
 };

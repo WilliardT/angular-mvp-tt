@@ -24,11 +24,11 @@ export class LoginPage {
     password: FormControl<string | null>;
   }>({
     username: new FormControl<string | null>(
-      null,
+      'emilys', // todo null
       [Validators.required]
     ),
     password: new FormControl<string | null>(
-      null,
+      'emilyspass', // todo null
       [Validators.required]
     )
   })
