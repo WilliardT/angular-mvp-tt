@@ -6,12 +6,28 @@
   --primary-color: #AE7AFF;
 }
 
+html,
 body {
-  background: var(--dark-color);
+  min-height: 100%;
+}
+
+body {
+  background: var(--dark-color) url('/assets/imgs/background.jpg') center / cover fixed no-repeat;
   color: var(--light-color);
   font-family: 'JetBrains Mono', sans-serif;
-  background-image: url(/public/assets/imgs/background.jpg);
 }
+
+app-root,
+tui-root,
+tui-root > .t-root-content {
+  display: block;
+  min-height: 100dvh;
+}
+
+tui-root {
+  border-image: none !important;
+}
+
 
 // лучше файл css reset - под каждый браузер скинуть как необходимо
 *,
