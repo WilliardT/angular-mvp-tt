@@ -35,4 +35,25 @@
     width: 100%;
   }
 
- }
+  &__password-input {
+    position: relative;
+  }
+
+  &__password-eye-btn {
+    background: none;
+    border: none;
+    position: absolute;
+    color: var(--light-color);
+
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    cursor: pointer;
+
+    &.active {
+      color: var(--primary-color);
+    }
+  }
+
+}

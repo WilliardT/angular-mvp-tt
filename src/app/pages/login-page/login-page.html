@@ -20,15 +20,24 @@
   <label class="login-form__label">
     Пароль
 
-    <input
-      class="login-form__input"
-      type="text"
-      placeholder="Введите пароль"
-      formControlName="password"
-    >
+    <span class="login-form__password-input">
+      <input
+       class="login-form__input"
+       [type]="isPasswordVisible() ? 'text' : 'password'"
+       placeholder="Введите пароль"
+       formControlName="password"
+      >
+
+      <button
+        class="login-form__password-eye-btn"
+        [class.active]="isPasswordVisible()"
+        (click)="isPasswordVisible.set(!isPasswordVisible())"
+      >
+        <tui-icon icon="@tui.eye-off" />
+      </button>
+    </span>
   </label>
 
-  <tui-icon icon="@tui.eye-off" />
 
   <button
     class="btn btn-shadow"
