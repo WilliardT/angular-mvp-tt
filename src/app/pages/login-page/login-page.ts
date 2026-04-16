@@ -2,11 +2,13 @@ import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
+import { TuiIcon } from '@taiga-ui/core';
 
 @Component({
   selector: 'app-login-page',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TuiIcon
   ],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss',
